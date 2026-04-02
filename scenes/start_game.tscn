@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://dnf8g7fix7urx"]
+
+[ext_resource type="Script" uid="uid://bmbjthkp1oy0q" path="res://scripts/start_game.gd" id="1_2aiwh"]
+[ext_resource type="FontFile" uid="uid://bc2g6v1vk5j47" path="res://resources/font/HarmonyOS_Sans_SC_Black.ttf" id="1_c75kr"]
+[ext_resource type="FontFile" uid="uid://dwux8ybadh6r7" path="res://resources/font/HarmonyOS_Sans_SC_Bold.ttf" id="2_tq2sd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tq2sd"]
+font = ExtResource("1_c75kr")
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_2aiwh"]
+font = ExtResource("2_tq2sd")
+
+[node name="StartGame" type="Control" unique_id=1702069737]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2aiwh")
+
+[node name="Panel" type="Panel" parent="." unique_id=694306824]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1444903671]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=1137744097]
+layout_mode = 2
+text = "青 丘"
+label_settings = SubResource("LabelSettings_tq2sd")
+horizontal_alignment = 1
+
+[node name="TouchToStart" type="Label" parent="VBoxContainer" unique_id=850597485]
+layout_mode = 2
+text = "点击进入游戏"
+label_settings = SubResource("LabelSettings_2aiwh")
+horizontal_alignment = 1
