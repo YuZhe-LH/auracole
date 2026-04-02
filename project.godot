@@ -24,6 +24,10 @@ window/size/viewport_height=1200
 
 project/assembly_name="Auracole"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_mcp/plugin.cfg")
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
