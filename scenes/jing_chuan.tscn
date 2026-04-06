@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://dodtdak0x8628"]
 
+[ext_resource type="Script" uid="uid://sgyrluet8c6j" path="res://scripts/controllers/jingchuan_controller.gd" id="1_vg6x4"]
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w5vql"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -17,6 +19,7 @@ sdfgi_enabled = true
 glow_enabled = true
 
 [node name="JingChuan" type="Node3D" unique_id=1590024785]
+script = ExtResource("1_vg6x4")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=791581841]
 environment = SubResource("Environment_2wwg8")
