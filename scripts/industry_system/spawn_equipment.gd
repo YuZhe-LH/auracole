@@ -5,8 +5,10 @@ const PREVIEW_EMISSION := Color(0.24, 0.58, 1.0)
 const PREVIEW_HEIGHT := 0.04
 const PREVIEW_MARGIN := 0.08
 const PREVIEW_Y_OFFSET := 0.01
+const EMPTY_CELL_ITEM := -1
 
-@export var snap_size_in_cells: Vector2i = Vector2i.ONE
+@export var snap_size_in_cells: Vector2i = Vector2i(2,3)
+@export var place_item_id: int = 0
 
 var is_industry_mode: bool = false
 var preview_mesh_instance: MeshInstance3D
@@ -25,6 +27,16 @@ func _process(_delta: float) -> void:
 		return
 
 	_update_hover_preview()
+
+
+func _input(event: InputEvent) -> void:
+	if not is_industry_mode:
+		return
+
+	if event is InputEventMouseButton \
+	and event.button_index == MOUSE_BUTTON_LEFT \
+	and event.pressed:
+		_try_place_current_footprint()
 
 func _on_industry_area_entry() -> void:
 	is_industry_mode = true
@@ -47,6 +59,19 @@ func _update_hover_preview() -> void:
 	_set_preview_visible(true)
 
 
+func _try_place_current_footprint() -> void:
+	var grid_cell: Variant = get_mouse_grid_cell()
+	if grid_cell == null:
+		return
+
+	var origin_cell := grid_cell as Vector3i
+	if not _can_place_footprint(origin_cell):
+		return
+
+	for cell in _get_footprint_cells(origin_cell):
+		set_cell_item(cell, place_item_id)
+
+
 func get_mouse_grid_cell() -> Variant:
 	var world_position: Variant = get_mouse_world_position()
 	if world_position == null:
@@ -57,6 +82,7 @@ func get_mouse_grid_cell() -> Variant:
 
 func _get_preview_local_position(grid_cell: Vector3i) -> Vector3:
 	var preview_position := map_to_local(grid_cell)
+	# GridMap returns the origin cell center, so larger footprints need a half-size offset.
 	preview_position.x += float(snap_size_in_cells.x - 1) * cell_size.x * 0.5
 	preview_position.y = float(grid_cell.y) * cell_size.y + PREVIEW_Y_OFFSET + PREVIEW_HEIGHT * 0.5
 	preview_position.z += float(snap_size_in_cells.y - 1) * cell_size.z * 0.5
@@ -123,6 +149,7 @@ func get_mouse_world_position() -> Variant:
 	var query := PhysicsRayQueryParameters3D.create(ray_origin, ray_origin + ray_direction * ray_length)
 	query.collide_with_bodies = true
 	query.collide_with_areas = false
+	# Ignore every collider except Ground so existing placed cubes do not block hover picking.
 	query.exclude = _get_ray_exclude_rids(ground)
 
 	var hit: Dictionary = get_world_3d().direct_space_state.intersect_ray(query)
@@ -151,6 +178,7 @@ func _collect_exclude_rids(node: Node, target_ground: CollisionObject3D, exclude
 
 func local_to_snapped_map(local_position: Vector3) -> Vector3i:
 	var map_cell := local_to_map(local_position)
+	# Snap to the top-left origin cell of the current footprint size.
 	map_cell.x = _snap_axis_to_footprint(map_cell.x, maxi(snap_size_in_cells.x, 1))
 	map_cell.y = 0
 	map_cell.z = _snap_axis_to_footprint(map_cell.z, maxi(snap_size_in_cells.y, 1))
@@ -159,3 +187,18 @@ func local_to_snapped_map(local_position: Vector3) -> Vector3i:
 
 func _snap_axis_to_footprint(cell_index: int, footprint: int) -> int:
 	return floori(float(cell_index) / float(footprint)) * footprint
+
+
+func _get_footprint_cells(origin_cell: Vector3i) -> Array[Vector3i]:
+	var cells: Array[Vector3i] = []
+	for x in range(maxi(snap_size_in_cells.x, 1)):
+		for z in range(maxi(snap_size_in_cells.y, 1)):
+			cells.append(Vector3i(origin_cell.x + x, origin_cell.y, origin_cell.z + z))
+	return cells
+
+
+func _can_place_footprint(origin_cell: Vector3i) -> bool:
+	for cell in _get_footprint_cells(origin_cell):
+		if get_cell_item(cell) != EMPTY_CELL_ITEM:
+			return false
+	return true
