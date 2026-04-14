@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
+  <component name="CMakeSettings">
+    <configurations />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="eeedbdae-07d7-4e51-991b-839182f7c92f" name="更改" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/industry" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;webstorm-dxy&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/webstorm-dxy/auracole.git&quot;,
+    &quot;accountId&quot;: &quot;92c657ab-e7fc-4c8c-87d7-2ee24399a2dc&quot;
+  }
+}</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="3CDJXc8sSQU0piAUXJFHKzLcX5l" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "cidr.known.project.marker": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected=".NET 可执行文件.Player">
+    <configuration name="Debug GDScript (Running session)" type="GDSCRIPT_DEBUG_RUN_CONFIGURATION" factoryName="GdScriptRunFactory">
+      <option name="json" value="{&#10;  // Launch: &quot;Launch a new instance of the game&quot;,&#10;  // Attach: &quot;Attach to an already running game, which was started from the Godot Editor&quot;&#10;  &quot;request&quot; : &quot;Attach&quot;,&#10;  &quot;debugServer&quot; : 6006, // port should match the Debug Adapter port in the Godot Editor project settings.&#10;  &quot;scene&quot; : &quot;main&quot;, // main, current, res://path/to/file.tscn&#10;  &#10;  // &quot;playArgs&quot; : [ &quot;--editor&quot; ], // debugging a tool script&#10;  // &quot;playArgs&quot;: [&quot;--debug-collisions&quot;,&quot;--debug-navigation&quot;], // different options&#10;  &#10;  // one click deploy and debug via Godot Editor:&#10;  // &quot;platform&quot;: &quot;Android&quot;, // including Android, iOS, Web and W4 consoles&#10;  // &quot;device&quot;: &quot;0&quot;, // index of the device of a &quot;platform&quot; type&#10;}" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Player GDScript" type="GDSCRIPT_DEBUG_RUN_CONFIGURATION" factoryName="GdScriptRunFactory">
+      <option name="json" value="{&#10;  // Launch: &quot;Launch a new instance of the game&quot;,&#10;  // Attach: &quot;Attach to an already running game, which was started from the Godot Editor&quot;&#10;  &quot;request&quot; : &quot;Launch&quot;,&#10;  &quot;debugServer&quot; : 6006, // port should match the Debug Adapter port in the Godot Editor project settings.&#10;  &quot;scene&quot; : &quot;main&quot;, // main, current, res://path/to/file.tscn&#10;  &#10;  // &quot;playArgs&quot; : [ &quot;--editor&quot; ], // debugging a tool script&#10;  // &quot;playArgs&quot;: [&quot;--debug-collisions&quot;,&quot;--debug-navigation&quot;], // different options&#10;  &#10;  // one click deploy and debug via Godot Editor:&#10;  // &quot;platform&quot;: &quot;Android&quot;, // including Android, iOS, Web and W4 consoles&#10;  // &quot;device&quot;: &quot;0&quot;, // index of the device of a &quot;platform&quot; type&#10;}" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Editor" type="RunExe" factoryName=".NET Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../../../root/Godot_v4.6.2-stable_mono_win64/Godot_v4.6.2-stable_mono_win64.exe" />
+      <option name="PROGRAM_PARAMETERS" value="--path &quot;./&quot; --editor" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\daxingyi\Documents\auracole" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="AUTO_ATTACH_CHILDREN" value="0" />
+      <option name="RUNTIME_TYPE" value="coreclr" />
+      <method v="2">
+        <option name="Build Solution" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Player" type="RunExe" factoryName=".NET Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../../../root/Godot_v4.6.2-stable_mono_win64/Godot_v4.6.2-stable_mono_win64.exe" />
+      <option name="PROGRAM_PARAMETERS" value="--path &quot;./&quot;" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\daxingyi\Documents\auracole" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="AUTO_ATTACH_CHILDREN" value="0" />
+      <option name="RUNTIME_TYPE" value="coreclr" />
+      <method v="2">
+        <option name="Build Solution" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="XMakeRunConfiguration" factoryName="Start and Debug" show_console_on_std_err="false" show_console_on_std_out="false">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <activatedToolkit name="runToolkit" />
+      <target name="runTarget" value="default" />
+      <platform name="runPlatform" value="default" />
+      <architecture name="runArchitecture" value="default" />
+      <toolchain name="runToolchain" value="default" />
+      <mode name="runMode" value="release" />
+      <arguments name="runArguments" value="" />
+      <workingDirectory name="runWorkingDir" value="$PROJECT_DIR$" />
+      <buildDirectory name="buildDirectory" value="" />
+      <androidNDKDirectory name="androidNDKDirectory" value="" />
+      <enableVerbose name="enableVerbose" value="false" />
+      <additionalConfiguration name="additionalConfiguration" value="" />
+      <dapDriverPath name="dapDriverPath" value="" />
+      <dapDriverAutoDetect name="dapDriverAutoDetect" value="true" />
+      <launchConfiguration name="launchConfiguration" value="{&#10;    &quot;stopOnEntry&quot;: true,&#10;    &quot;sourceMap&quot;: {&#10;        &quot;enabled&quot;: &quot;true&quot;&#10;    },&#10;    &quot;showDisassembly&quot;: &quot;auto&quot;,&#10;    &quot;initCommands&quot;: [],&#10;    &quot;preRunTask&quot;: {&#10;        &quot;commands&quot;: []&#10;    },&#10;    &quot;variables&quot;: {&#10;        &quot;showArguments&quot;: true,&#10;        &quot;showLocals&quot;: true,&#10;        &quot;showGlobals&quot;: true,&#10;        &quot;showStatics&quot;: true,&#10;        &quot;showRegisters&quot;: true&#10;    },&#10;    &quot;ignoreFunctionBpoints&quot;: false,&#10;    &quot;stopAtConnectTime&quot;: false&#10;}" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="eeedbdae-07d7-4e51-991b-839182f7c92f" name="更改" comment="" />
+      <created>1775914247940</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1775914247940</updated>
+      <workItem from="1775914249104" duration="12124000" />
+      <workItem from="1776166734757" duration="2221000" />
+    </task>
+    <task id="LOCAL-00001" summary="feat(runtime): 初始化工业生产线离线系统核心模块&#10;&#10;- 新增 MachineController.cs，实现机器节点运行时状态管理&#10;- 支持机器输入输出缓冲区容量限制与库存管理&#10;- 提供生产配方设定和机器状态快照导出与应用&#10;- 实现生产线多机器之间的输出路由配置&#10;- 新增离线生产详细设计文档 OFFLINE_PRODUCTION_GUIDE.md&#10;- 添加Godot项目配置文件及启动场景 start_game.tscn&#10;- 完成工业蓝图场景初步创建 industry_blueprint.tscn&#10;- 配置C#项目文件和解决方案支持Godot 4.6及.NET 8.0框架&#10;- 新增启动UI界面和资源字体、图片导入设置&#10;- 配置.gitignore忽略dotnet工具文件，完善IDE相关忽略项">
+      <option name="closed" value="true" />
+      <created>1776171952662</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1776171952662</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="feat(runtime): 初始化工业生产线离线系统核心模块&#10;&#10;- 新增 MachineController.cs，实现机器节点运行时状态管理&#10;- 支持机器输入输出缓冲区容量限制与库存管理&#10;- 提供生产配方设定和机器状态快照导出与应用&#10;- 实现生产线多机器之间的输出路由配置&#10;- 新增离线生产详细设计文档 OFFLINE_PRODUCTION_GUIDE.md&#10;- 添加Godot项目配置文件及启动场景 start_game.tscn&#10;- 完成工业蓝图场景初步创建 industry_blueprint.tscn&#10;- 配置C#项目文件和解决方案支持Godot 4.6及.NET 8.0框架&#10;- 新增启动UI界面和资源字体、图片导入设置&#10;- 配置.gitignore忽略dotnet工具文件，完善IDE相关忽略项" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(runtime): 初始化工业生产线离线系统核心模块&#10;&#10;- 新增 MachineController.cs，实现机器节点运行时状态管理&#10;- 支持机器输入输出缓冲区容量限制与库存管理&#10;- 提供生产配方设定和机器状态快照导出与应用&#10;- 实现生产线多机器之间的输出路由配置&#10;- 新增离线生产详细设计文档 OFFLINE_PRODUCTION_GUIDE.md&#10;- 添加Godot项目配置文件及启动场景 start_game.tscn&#10;- 完成工业蓝图场景初步创建 industry_blueprint.tscn&#10;- 配置C#项目文件和解决方案支持Godot 4.6及.NET 8.0框架&#10;- 新增启动UI界面和资源字体、图片导入设置&#10;- 配置.gitignore忽略dotnet工具文件，完善IDE相关忽略项" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.OperationCanceledException" breakIfHandledByOtherCode="false" displayValue="System.OperationCanceledException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.Tasks.TaskCanceledException" breakIfHandledByOtherCode="false" displayValue="System.Threading.Tasks.TaskCanceledException" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
