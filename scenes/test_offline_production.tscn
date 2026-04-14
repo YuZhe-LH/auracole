@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://bp1dvf37ttwho"]
+
+[ext_resource type="Script" uid="uid://j52nmywhbhmd" path="res://scripts/industry_map/runtime/ProductionLineManager.cs" id="1_uarkq"]
+[ext_resource type="Script" uid="uid://ds3sjeatsg2nn" path="res://scripts/industry_map/runtime/MachineController.cs" id="2_2huen"]
+
+[node name="OfflineProductionTest" type="Control" unique_id=470628199]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_uarkq")
+
+[node name="TopBar" type="HBoxContainer" parent="." unique_id=2047357124]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = 72.0
+size_flags_horizontal = 3
+theme_override_constants/separation = 24
+
+[node name="InputInventoryLabel" type="Label" parent="TopBar" unique_id=1615862872]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "输入库存: 0"
+
+[node name="OutputInventoryLabel" type="Label" parent="TopBar" unique_id=1882463939]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "输出库存: 0"
+
+[node name="MachineStateLabel" type="Label" parent="TopBar" unique_id=378125874]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "机器状态: Idle"
+
+[node name="OfflineDurationLabel" type="Label" parent="TopBar" unique_id=1623929687]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "离线时长: 0s"
+
+[node name="ActionPanel" type="VBoxContainer" parent="." unique_id=1103592496]
+custom_minimum_size = Vector2(480, 180)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 720.0
+offset_top = 240.0
+offset_right = 720.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 18
+
+[node name="Simulate24HoursButton" type="Button" parent="ActionPanel" unique_id=299228572]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+text = "模拟离线 24 小时"
+
+[node name="ManualFeedButton" type="Button" parent="ActionPanel" unique_id=546910949]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+text = "手动进料: 铁锭×10"
+
+[node name="SaveAndQuitButton" type="Button" parent="ActionPanel" unique_id=1045887453]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+text = "保存快照并退出"
+
+[node name="LogLabel" type="Label" parent="." unique_id=2091951412]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 1120.0
+offset_right = 1896.0
+offset_bottom = 1160.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "就绪"
+autowrap_mode = 2
+
+[node name="MachineNode" type="Node2D" parent="." unique_id=226306207]
+script = ExtResource("2_2huen")
