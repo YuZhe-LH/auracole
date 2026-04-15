@@ -1,0 +1,1510 @@
+[gd_scene format=3 uid="uid://cxqlefngsvenu"]
+
+[ext_resource type="Texture2D" uid="uid://lbb10137hfc7" path="res://resources/texture/mapboard.png" id="1_4xfga"]
+[ext_resource type="Script" uid="uid://d2tluaywj0m0g" path="res://scripts/controllers/map_controller.gd" id="1_wslke"]
+[ext_resource type="Script" uid="uid://da0c5rfih2k3q" path="res://scripts/scrollcontainer.gd" id="2_0cso3"]
+[ext_resource type="Texture2D" uid="uid://886jrxb1yc33" path="res://resources/texture/高纯金属块.png" id="3_2klcf"]
+[ext_resource type="Texture2D" uid="uid://tstudfvx6cop" path="res://resources/texture/圆角矩形.png" id="4_nakos"]
+[ext_resource type="Texture2D" uid="uid://cmws7b8shymh2" path="res://resources/texture/高纯玄萤燃料块.png" id="5_2lpho"]
+[ext_resource type="Texture2D" uid="uid://g4jcq0m5hh6x" path="res://resources/texture/玄萤燃料块.png" id="6_mlgqr"]
+[ext_resource type="Texture2D" uid="uid://cbdo154m3jh6m" path="res://resources/texture/玄萤矿.png" id="7_wslke"]
+[ext_resource type="Texture2D" uid="uid://bkc88albnv887" path="res://resources/texture/玄萤矿粉.png" id="8_gw3fx"]
+[ext_resource type="Texture2D" uid="uid://cgw16t4qsp3ms" path="res://resources/texture/精炼玄萤矿粉.png" id="9_n1psn"]
+[ext_resource type="Texture2D" uid="uid://dp2s644bcrb1h" path="res://resources/texture/金属块.png" id="10_c00ee"]
+[ext_resource type="Texture2D" uid="uid://cf5qbfkm6efwb" path="res://resources/texture/金属粉末.png" id="11_p7tei"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_paxxb"]
+texture = ExtResource("1_4xfga")
+
+[node name="map" type="Control" unique_id=1441586672]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wslke")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1482126043]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1200.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_paxxb")
+
+[node name="Control" type="Control" parent="PanelContainer" unique_id=805658148]
+layout_mode = 2
+
+[node name="Label1" type="Label" parent="PanelContainer/Control" unique_id=1450359227]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 249.0
+offset_top = 105.0
+offset_right = 949.0
+offset_bottom = 128.0
+text = "                   产物信息                                    当前数据                                     理论数据"
+
+[node name="Label2" type="Label" parent="PanelContainer/Control" unique_id=814221894]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 1069.0
+offset_top = 105.0
+offset_right = 1716.0
+offset_bottom = 136.0
+text = "                   产物信息                                    当前数据                                     理论数据"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=811553148]
+z_index = 2
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1200.0
+theme_override_constants/margin_left = 234
+theme_override_constants/margin_top = 145
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer" unique_id=939202364]
+layout_mode = 2
+script = ExtResource("2_0cso3")
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/ScrollContainer" unique_id=577456979]
+layout_mode = 2
+theme_override_constants/h_separation = 95
+theme_override_constants/v_separation = 79
+columns = 2
+
+[node name="slot" type="Control" parent="MarginContainer/ScrollContainer/GridContainer" unique_id=760179039]
+custom_minimum_size = Vector2(720, 168)
+layout_mode = 2
+
+[node name="item_texture" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot" unique_id=727966750]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 31.0
+offset_right = 234.0
+offset_bottom = 111.0
+texture = ExtResource("3_2klcf")
+
+[node name="name" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot" unique_id=742260235]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 36.0
+offset_right = 73.0
+offset_bottom = 65.0
+text = "高纯金属块
+"
+
+[node name="stock_room​_string" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot" unique_id=492105891]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 76.0
+offset_right = 88.0
+offset_bottom = 99.0
+text = "仓库数量："
+
+[node name="stock_room​_number" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot" unique_id=264308628]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 103.0
+offset_top = 77.0
+offset_right = 140.0
+offset_bottom = 100.0
+text = "1000"
+
+[node name="const_name_curr_theory" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot" unique_id=949527272]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 287.0
+offset_top = 34.0
+offset_right = 327.0
+offset_bottom = 83.0
+text = "生产：
+
+消耗："
+
+[node name="const_name_curr_theory2" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot/const_name_curr_theory" unique_id=1421534425]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 199.0
+offset_right = 239.0
+offset_bottom = 49.0
+text = "生产：
+
+消耗："
+
+[node name="curr_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot" unique_id=1297697787]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 33.0
+offset_right = 422.0
+offset_bottom = 56.0
+text = "1000/分钟"
+
+[node name="curr_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot" unique_id=1069332223]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 85.0
+offset_right = 422.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="theory_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot" unique_id=1073925765]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 34.0
+offset_right = 617.0
+offset_bottom = 57.0
+text = "1000/分钟"
+
+[node name="theory_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot" unique_id=1092936341]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 85.0
+offset_right = 617.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot" unique_id=938692306]
+z_index = -1
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 168.0
+texture = ExtResource("4_nakos")
+
+[node name="slot2" type="Control" parent="MarginContainer/ScrollContainer/GridContainer" unique_id=62410144]
+custom_minimum_size = Vector2(720, 168)
+layout_mode = 2
+
+[node name="item_texture" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot2" unique_id=1216874692]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 31.0
+offset_right = 234.0
+offset_bottom = 111.0
+texture = ExtResource("5_2lpho")
+
+[node name="name" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot2" unique_id=1319597433]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 36.0
+offset_right = 73.0
+offset_bottom = 65.0
+text = "高纯玄萤燃料块"
+
+[node name="stock_room​_string" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot2" unique_id=1328920952]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 76.0
+offset_right = 88.0
+offset_bottom = 99.0
+text = "仓库数量："
+
+[node name="stock_room​_number" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot2" unique_id=1693950400]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 103.0
+offset_top = 77.0
+offset_right = 140.0
+offset_bottom = 100.0
+text = "1000"
+
+[node name="const_name_curr_theory" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot2" unique_id=2059142822]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 287.0
+offset_top = 34.0
+offset_right = 327.0
+offset_bottom = 83.0
+text = "生产：
+
+消耗："
+
+[node name="const_name_curr_theory2" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot2/const_name_curr_theory" unique_id=1153793486]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 199.0
+offset_right = 239.0
+offset_bottom = 49.0
+text = "生产：
+
+消耗："
+
+[node name="curr_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot2" unique_id=572895585]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 33.0
+offset_right = 422.0
+offset_bottom = 56.0
+text = "1000/分钟"
+
+[node name="curr_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot2" unique_id=1711588937]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 85.0
+offset_right = 422.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="theory_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot2" unique_id=991441176]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 34.0
+offset_right = 617.0
+offset_bottom = 57.0
+text = "1000/分钟"
+
+[node name="theory_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot2" unique_id=762642427]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 85.0
+offset_right = 617.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot2" unique_id=1461635119]
+z_index = -1
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 168.0
+texture = ExtResource("4_nakos")
+
+[node name="slot3" type="Control" parent="MarginContainer/ScrollContainer/GridContainer" unique_id=639871932]
+custom_minimum_size = Vector2(720, 168)
+layout_mode = 2
+
+[node name="item_texture" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot3" unique_id=1518237953]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 31.0
+offset_right = 234.0
+offset_bottom = 111.0
+texture = ExtResource("6_mlgqr")
+
+[node name="name" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot3" unique_id=695077420]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 36.0
+offset_right = 73.0
+offset_bottom = 65.0
+text = "玄萤燃料块"
+
+[node name="stock_room​_string" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot3" unique_id=67577629]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 76.0
+offset_right = 88.0
+offset_bottom = 99.0
+text = "仓库数量："
+
+[node name="stock_room​_number" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot3" unique_id=819391991]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 103.0
+offset_top = 77.0
+offset_right = 140.0
+offset_bottom = 100.0
+text = "1000"
+
+[node name="const_name_curr_theory" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot3" unique_id=1751775606]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 287.0
+offset_top = 34.0
+offset_right = 327.0
+offset_bottom = 83.0
+text = "生产：
+
+消耗："
+
+[node name="const_name_curr_theory2" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot3/const_name_curr_theory" unique_id=1333711943]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 199.0
+offset_right = 239.0
+offset_bottom = 49.0
+text = "生产：
+
+消耗："
+
+[node name="curr_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot3" unique_id=1046632090]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 33.0
+offset_right = 422.0
+offset_bottom = 56.0
+text = "1000/分钟"
+
+[node name="curr_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot3" unique_id=1219487704]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 85.0
+offset_right = 422.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="theory_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot3" unique_id=1434204844]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 34.0
+offset_right = 617.0
+offset_bottom = 57.0
+text = "1000/分钟"
+
+[node name="theory_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot3" unique_id=129468443]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 85.0
+offset_right = 617.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot3" unique_id=508721778]
+z_index = -1
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 168.0
+texture = ExtResource("4_nakos")
+
+[node name="slot4" type="Control" parent="MarginContainer/ScrollContainer/GridContainer" unique_id=1102739831]
+custom_minimum_size = Vector2(720, 168)
+layout_mode = 2
+
+[node name="item_texture" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot4" unique_id=57473170]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 31.0
+offset_right = 234.0
+offset_bottom = 111.0
+texture = ExtResource("7_wslke")
+
+[node name="name" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot4" unique_id=970547459]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 36.0
+offset_right = 73.0
+offset_bottom = 65.0
+text = "玄萤矿"
+
+[node name="stock_room​_string" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot4" unique_id=456319632]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 76.0
+offset_right = 88.0
+offset_bottom = 99.0
+text = "仓库数量："
+
+[node name="stock_room​_number" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot4" unique_id=73615848]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 103.0
+offset_top = 77.0
+offset_right = 140.0
+offset_bottom = 100.0
+text = "1000"
+
+[node name="const_name_curr_theory" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot4" unique_id=690895943]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 287.0
+offset_top = 34.0
+offset_right = 327.0
+offset_bottom = 83.0
+text = "生产：
+
+消耗："
+
+[node name="const_name_curr_theory2" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot4/const_name_curr_theory" unique_id=1099402096]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 199.0
+offset_right = 239.0
+offset_bottom = 49.0
+text = "生产：
+
+消耗："
+
+[node name="curr_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot4" unique_id=863846524]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 33.0
+offset_right = 422.0
+offset_bottom = 56.0
+text = "1000/分钟"
+
+[node name="curr_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot4" unique_id=775719342]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 85.0
+offset_right = 422.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="theory_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot4" unique_id=2107458910]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 34.0
+offset_right = 617.0
+offset_bottom = 57.0
+text = "1000/分钟"
+
+[node name="theory_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot4" unique_id=859628189]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 85.0
+offset_right = 617.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot4" unique_id=1175268561]
+z_index = -1
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 168.0
+texture = ExtResource("4_nakos")
+
+[node name="slot5" type="Control" parent="MarginContainer/ScrollContainer/GridContainer" unique_id=352710130]
+custom_minimum_size = Vector2(720, 168)
+layout_mode = 2
+
+[node name="item_texture" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot5" unique_id=357164134]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 31.0
+offset_right = 234.0
+offset_bottom = 111.0
+texture = ExtResource("8_gw3fx")
+
+[node name="name" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot5" unique_id=2032254894]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 36.0
+offset_right = 73.0
+offset_bottom = 65.0
+text = "玄萤矿粉"
+
+[node name="stock_room​_string" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot5" unique_id=388843261]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 76.0
+offset_right = 88.0
+offset_bottom = 99.0
+text = "仓库数量："
+
+[node name="stock_room​_number" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot5" unique_id=796119093]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 103.0
+offset_top = 77.0
+offset_right = 140.0
+offset_bottom = 100.0
+text = "1000"
+
+[node name="const_name_curr_theory" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot5" unique_id=219672256]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 287.0
+offset_top = 34.0
+offset_right = 327.0
+offset_bottom = 83.0
+text = "生产：
+
+消耗："
+
+[node name="const_name_curr_theory2" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot5/const_name_curr_theory" unique_id=1805796203]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 199.0
+offset_right = 239.0
+offset_bottom = 49.0
+text = "生产：
+
+消耗："
+
+[node name="curr_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot5" unique_id=864459396]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 33.0
+offset_right = 422.0
+offset_bottom = 56.0
+text = "1000/分钟"
+
+[node name="curr_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot5" unique_id=1816254037]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 85.0
+offset_right = 422.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="theory_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot5" unique_id=556863108]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 34.0
+offset_right = 617.0
+offset_bottom = 57.0
+text = "1000/分钟"
+
+[node name="theory_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot5" unique_id=1348487938]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 85.0
+offset_right = 617.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot5" unique_id=296561903]
+z_index = -1
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 168.0
+texture = ExtResource("4_nakos")
+
+[node name="slot6" type="Control" parent="MarginContainer/ScrollContainer/GridContainer" unique_id=1723343384]
+custom_minimum_size = Vector2(720, 168)
+layout_mode = 2
+
+[node name="item_texture" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot6" unique_id=160769684]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 31.0
+offset_right = 234.0
+offset_bottom = 111.0
+texture = ExtResource("9_n1psn")
+
+[node name="name" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot6" unique_id=1630317393]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 36.0
+offset_right = 73.0
+offset_bottom = 65.0
+text = "精炼玄萤矿粉"
+
+[node name="stock_room​_string" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot6" unique_id=1598054744]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 76.0
+offset_right = 88.0
+offset_bottom = 99.0
+text = "仓库数量："
+
+[node name="stock_room​_number" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot6" unique_id=1863030667]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 103.0
+offset_top = 77.0
+offset_right = 140.0
+offset_bottom = 100.0
+text = "1000"
+
+[node name="const_name_curr_theory" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot6" unique_id=140549909]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 287.0
+offset_top = 34.0
+offset_right = 327.0
+offset_bottom = 83.0
+text = "生产：
+
+消耗："
+
+[node name="const_name_curr_theory2" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot6/const_name_curr_theory" unique_id=648777958]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 199.0
+offset_right = 239.0
+offset_bottom = 49.0
+text = "生产：
+
+消耗："
+
+[node name="curr_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot6" unique_id=1624193581]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 33.0
+offset_right = 422.0
+offset_bottom = 56.0
+text = "1000/分钟"
+
+[node name="curr_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot6" unique_id=1774433069]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 85.0
+offset_right = 422.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="theory_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot6" unique_id=1062981890]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 34.0
+offset_right = 617.0
+offset_bottom = 57.0
+text = "1000/分钟"
+
+[node name="theory_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot6" unique_id=1001600570]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 85.0
+offset_right = 617.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot6" unique_id=1809055253]
+z_index = -1
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 168.0
+texture = ExtResource("4_nakos")
+
+[node name="slot7" type="Control" parent="MarginContainer/ScrollContainer/GridContainer" unique_id=678009057]
+custom_minimum_size = Vector2(720, 168)
+layout_mode = 2
+
+[node name="item_texture" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot7" unique_id=1110042675]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 31.0
+offset_right = 234.0
+offset_bottom = 111.0
+texture = ExtResource("10_c00ee")
+
+[node name="name" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot7" unique_id=1064284480]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 36.0
+offset_right = 73.0
+offset_bottom = 65.0
+text = "金属块"
+
+[node name="stock_room​_string" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot7" unique_id=1256105431]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 76.0
+offset_right = 88.0
+offset_bottom = 99.0
+text = "仓库数量："
+
+[node name="stock_room​_number" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot7" unique_id=1183114108]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 103.0
+offset_top = 77.0
+offset_right = 140.0
+offset_bottom = 100.0
+text = "1000"
+
+[node name="const_name_curr_theory" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot7" unique_id=87790610]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 287.0
+offset_top = 34.0
+offset_right = 327.0
+offset_bottom = 83.0
+text = "生产：
+
+消耗："
+
+[node name="const_name_curr_theory2" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot7/const_name_curr_theory" unique_id=2121416048]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 199.0
+offset_right = 239.0
+offset_bottom = 49.0
+text = "生产：
+
+消耗："
+
+[node name="curr_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot7" unique_id=1861738707]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 33.0
+offset_right = 422.0
+offset_bottom = 56.0
+text = "1000/分钟"
+
+[node name="curr_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot7" unique_id=201745169]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 85.0
+offset_right = 422.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="theory_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot7" unique_id=530968693]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 34.0
+offset_right = 617.0
+offset_bottom = 57.0
+text = "1000/分钟"
+
+[node name="theory_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot7" unique_id=311785823]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 85.0
+offset_right = 617.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot7" unique_id=1735043448]
+z_index = -1
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 168.0
+texture = ExtResource("4_nakos")
+
+[node name="slot8" type="Control" parent="MarginContainer/ScrollContainer/GridContainer" unique_id=606374367]
+custom_minimum_size = Vector2(720, 168)
+layout_mode = 2
+
+[node name="item_texture" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot8" unique_id=1458020297]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 31.0
+offset_right = 234.0
+offset_bottom = 111.0
+texture = ExtResource("11_p7tei")
+
+[node name="name" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot8" unique_id=1173293007]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 36.0
+offset_right = 73.0
+offset_bottom = 65.0
+text = "金属粉末"
+
+[node name="stock_room​_string" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot8" unique_id=335225647]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 76.0
+offset_right = 88.0
+offset_bottom = 99.0
+text = "仓库数量："
+
+[node name="stock_room​_number" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot8" unique_id=559048153]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 103.0
+offset_top = 77.0
+offset_right = 140.0
+offset_bottom = 100.0
+text = "1000"
+
+[node name="const_name_curr_theory" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot8" unique_id=959209730]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 287.0
+offset_top = 34.0
+offset_right = 327.0
+offset_bottom = 83.0
+text = "生产：
+
+消耗："
+
+[node name="const_name_curr_theory2" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot8/const_name_curr_theory" unique_id=89804504]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 199.0
+offset_right = 239.0
+offset_bottom = 49.0
+text = "生产：
+
+消耗："
+
+[node name="curr_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot8" unique_id=1411051071]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 33.0
+offset_right = 422.0
+offset_bottom = 56.0
+text = "1000/分钟"
+
+[node name="curr_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot8" unique_id=1281914108]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 85.0
+offset_right = 422.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="theory_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot8" unique_id=846534925]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 34.0
+offset_right = 617.0
+offset_bottom = 57.0
+text = "1000/分钟"
+
+[node name="theory_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot8" unique_id=269475471]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 85.0
+offset_right = 617.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot8" unique_id=1319652578]
+z_index = -1
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 168.0
+texture = ExtResource("4_nakos")
+
+[node name="slot9" type="Control" parent="MarginContainer/ScrollContainer/GridContainer" unique_id=1365109791]
+custom_minimum_size = Vector2(720, 168)
+layout_mode = 2
+
+[node name="item_texture" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot9" unique_id=158779557]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 31.0
+offset_right = 234.0
+offset_bottom = 111.0
+
+[node name="name" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot9" unique_id=781819107]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 36.0
+offset_right = 73.0
+offset_bottom = 65.0
+text = "图标名"
+
+[node name="stock_room​_string" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot9" unique_id=1871162486]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 76.0
+offset_right = 88.0
+offset_bottom = 99.0
+text = "仓库数量："
+
+[node name="stock_room​_number" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot9" unique_id=957941258]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 103.0
+offset_top = 77.0
+offset_right = 140.0
+offset_bottom = 100.0
+text = "1000"
+
+[node name="const_name_curr_theory" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot9" unique_id=1951045979]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 287.0
+offset_top = 34.0
+offset_right = 327.0
+offset_bottom = 83.0
+text = "生产：
+
+消耗："
+
+[node name="const_name_curr_theory2" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot9/const_name_curr_theory" unique_id=665964090]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 199.0
+offset_right = 239.0
+offset_bottom = 49.0
+text = "生产：
+
+消耗："
+
+[node name="curr_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot9" unique_id=1754906747]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 33.0
+offset_right = 422.0
+offset_bottom = 56.0
+text = "1000/分钟"
+
+[node name="curr_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot9" unique_id=1256929880]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 85.0
+offset_right = 422.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="theory_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot9" unique_id=1234741453]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 34.0
+offset_right = 617.0
+offset_bottom = 57.0
+text = "1000/分钟"
+
+[node name="theory_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot9" unique_id=842742925]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 85.0
+offset_right = 617.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot9" unique_id=440797758]
+z_index = -1
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 168.0
+texture = ExtResource("4_nakos")
+
+[node name="slot10" type="Control" parent="MarginContainer/ScrollContainer/GridContainer" unique_id=162764208]
+custom_minimum_size = Vector2(720, 168)
+layout_mode = 2
+
+[node name="item_texture" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot10" unique_id=1324609336]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 31.0
+offset_right = 234.0
+offset_bottom = 111.0
+
+[node name="name" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot10" unique_id=609309034]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 36.0
+offset_right = 73.0
+offset_bottom = 65.0
+text = "图标名"
+
+[node name="stock_room​_string" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot10" unique_id=640149645]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 76.0
+offset_right = 88.0
+offset_bottom = 99.0
+text = "仓库数量："
+
+[node name="stock_room​_number" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot10" unique_id=2002993341]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 103.0
+offset_top = 77.0
+offset_right = 140.0
+offset_bottom = 100.0
+text = "1000"
+
+[node name="const_name_curr_theory" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot10" unique_id=1797981293]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 287.0
+offset_top = 34.0
+offset_right = 327.0
+offset_bottom = 83.0
+text = "生产：
+
+消耗："
+
+[node name="const_name_curr_theory2" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot10/const_name_curr_theory" unique_id=2140245708]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 199.0
+offset_right = 239.0
+offset_bottom = 49.0
+text = "生产：
+
+消耗："
+
+[node name="curr_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot10" unique_id=1955945542]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 33.0
+offset_right = 422.0
+offset_bottom = 56.0
+text = "1000/分钟"
+
+[node name="curr_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot10" unique_id=1969364890]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 85.0
+offset_right = 422.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="theory_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot10" unique_id=1851306101]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 34.0
+offset_right = 617.0
+offset_bottom = 57.0
+text = "1000/分钟"
+
+[node name="theory_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot10" unique_id=1532865821]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 85.0
+offset_right = 617.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot10" unique_id=1195030703]
+z_index = -1
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 168.0
+texture = ExtResource("4_nakos")
+
+[node name="slot11" type="Control" parent="MarginContainer/ScrollContainer/GridContainer" unique_id=1723189916]
+custom_minimum_size = Vector2(720, 168)
+layout_mode = 2
+
+[node name="item_texture" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot11" unique_id=107056281]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 31.0
+offset_right = 234.0
+offset_bottom = 111.0
+
+[node name="name" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot11" unique_id=331408293]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 36.0
+offset_right = 73.0
+offset_bottom = 65.0
+text = "图标名"
+
+[node name="stock_room​_string" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot11" unique_id=1045430527]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 76.0
+offset_right = 88.0
+offset_bottom = 99.0
+text = "仓库数量："
+
+[node name="stock_room​_number" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot11" unique_id=712338169]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 103.0
+offset_top = 77.0
+offset_right = 140.0
+offset_bottom = 100.0
+text = "1000"
+
+[node name="const_name_curr_theory" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot11" unique_id=1045435336]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 287.0
+offset_top = 34.0
+offset_right = 327.0
+offset_bottom = 83.0
+text = "生产：
+
+消耗："
+
+[node name="const_name_curr_theory2" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot11/const_name_curr_theory" unique_id=2068570781]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 199.0
+offset_right = 239.0
+offset_bottom = 49.0
+text = "生产：
+
+消耗："
+
+[node name="curr_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot11" unique_id=124053504]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 33.0
+offset_right = 422.0
+offset_bottom = 56.0
+text = "1000/分钟"
+
+[node name="curr_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot11" unique_id=1429127910]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 85.0
+offset_right = 422.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="theory_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot11" unique_id=650992572]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 34.0
+offset_right = 617.0
+offset_bottom = 57.0
+text = "1000/分钟"
+
+[node name="theory_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot11" unique_id=640329394]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 85.0
+offset_right = 617.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot11" unique_id=899577186]
+z_index = -1
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 168.0
+texture = ExtResource("4_nakos")
+
+[node name="slot12" type="Control" parent="MarginContainer/ScrollContainer/GridContainer" unique_id=1506697162]
+custom_minimum_size = Vector2(720, 168)
+layout_mode = 2
+
+[node name="item_texture" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot12" unique_id=2115740271]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 31.0
+offset_right = 234.0
+offset_bottom = 111.0
+
+[node name="name" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot12" unique_id=1613941536]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 36.0
+offset_right = 73.0
+offset_bottom = 65.0
+text = "图标名"
+
+[node name="stock_room​_string" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot12" unique_id=30596641]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 76.0
+offset_right = 88.0
+offset_bottom = 99.0
+text = "仓库数量："
+
+[node name="stock_room​_number" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot12" unique_id=1185333036]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 103.0
+offset_top = 77.0
+offset_right = 140.0
+offset_bottom = 100.0
+text = "1000"
+
+[node name="const_name_curr_theory" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot12" unique_id=1353382346]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 287.0
+offset_top = 34.0
+offset_right = 327.0
+offset_bottom = 83.0
+text = "生产：
+
+消耗："
+
+[node name="const_name_curr_theory2" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot12/const_name_curr_theory" unique_id=1630766791]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 199.0
+offset_right = 239.0
+offset_bottom = 49.0
+text = "生产：
+
+消耗："
+
+[node name="curr_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot12" unique_id=1050888685]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 33.0
+offset_right = 422.0
+offset_bottom = 56.0
+text = "1000/分钟"
+
+[node name="curr_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot12" unique_id=719053521]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 85.0
+offset_right = 422.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="theory_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot12" unique_id=1530063574]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 34.0
+offset_right = 617.0
+offset_bottom = 57.0
+text = "1000/分钟"
+
+[node name="theory_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot12" unique_id=1496761579]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 85.0
+offset_right = 617.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot12" unique_id=667264211]
+z_index = -1
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 168.0
+texture = ExtResource("4_nakos")
+
+[node name="slot13" type="Control" parent="MarginContainer/ScrollContainer/GridContainer" unique_id=1334288481]
+custom_minimum_size = Vector2(720, 168)
+layout_mode = 2
+
+[node name="item_texture" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot13" unique_id=1403442804]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 31.0
+offset_right = 234.0
+offset_bottom = 111.0
+
+[node name="name" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot13" unique_id=1421519800]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 36.0
+offset_right = 73.0
+offset_bottom = 65.0
+text = "图标名"
+
+[node name="stock_room​_string" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot13" unique_id=765532084]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 76.0
+offset_right = 88.0
+offset_bottom = 99.0
+text = "仓库数量："
+
+[node name="stock_room​_number" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot13" unique_id=1444157837]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 103.0
+offset_top = 77.0
+offset_right = 140.0
+offset_bottom = 100.0
+text = "1000"
+
+[node name="const_name_curr_theory" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot13" unique_id=643079488]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 287.0
+offset_top = 34.0
+offset_right = 327.0
+offset_bottom = 83.0
+text = "生产：
+
+消耗："
+
+[node name="const_name_curr_theory2" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot13/const_name_curr_theory" unique_id=1397479147]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 199.0
+offset_right = 239.0
+offset_bottom = 49.0
+text = "生产：
+
+消耗："
+
+[node name="curr_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot13" unique_id=1209550232]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 33.0
+offset_right = 422.0
+offset_bottom = 56.0
+text = "1000/分钟"
+
+[node name="curr_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot13" unique_id=1922921906]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 85.0
+offset_right = 422.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="theory_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot13" unique_id=1527066356]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 34.0
+offset_right = 617.0
+offset_bottom = 57.0
+text = "1000/分钟"
+
+[node name="theory_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot13" unique_id=2025585001]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 85.0
+offset_right = 617.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot13" unique_id=980481888]
+z_index = -1
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 168.0
+texture = ExtResource("4_nakos")
+
+[node name="slot14" type="Control" parent="MarginContainer/ScrollContainer/GridContainer" unique_id=124834919]
+custom_minimum_size = Vector2(720, 168)
+layout_mode = 2
+
+[node name="item_texture" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot14" unique_id=75108258]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 31.0
+offset_right = 234.0
+offset_bottom = 111.0
+
+[node name="name" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot14" unique_id=525659646]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 36.0
+offset_right = 73.0
+offset_bottom = 65.0
+text = "图标名"
+
+[node name="stock_room​_string" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot14" unique_id=544292081]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 76.0
+offset_right = 88.0
+offset_bottom = 99.0
+text = "仓库数量："
+
+[node name="stock_room​_number" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot14" unique_id=1211563729]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 103.0
+offset_top = 77.0
+offset_right = 140.0
+offset_bottom = 100.0
+text = "1000"
+
+[node name="const_name_curr_theory" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot14" unique_id=1952801501]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 287.0
+offset_top = 34.0
+offset_right = 327.0
+offset_bottom = 83.0
+text = "生产：
+
+消耗："
+
+[node name="const_name_curr_theory2" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot14/const_name_curr_theory" unique_id=416743410]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 199.0
+offset_right = 239.0
+offset_bottom = 49.0
+text = "生产：
+
+消耗："
+
+[node name="curr_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot14" unique_id=298802364]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 33.0
+offset_right = 422.0
+offset_bottom = 56.0
+text = "1000/分钟"
+
+[node name="curr_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot14" unique_id=1588295685]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 85.0
+offset_right = 422.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="theory_produce" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot14" unique_id=522131805]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 34.0
+offset_right = 617.0
+offset_bottom = 57.0
+text = "1000/分钟"
+
+[node name="theory_consume" type="Label" parent="MarginContainer/ScrollContainer/GridContainer/slot14" unique_id=1352248430]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+layout_mode = 0
+offset_left = 542.0
+offset_top = 85.0
+offset_right = 617.0
+offset_bottom = 108.0
+text = "1000/分钟"
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/ScrollContainer/GridContainer/slot14" unique_id=206252199]
+z_index = -1
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 168.0
+texture = ExtResource("4_nakos")
+
+[connection signal="gui_input" from="MarginContainer/ScrollContainer" to="MarginContainer/ScrollContainer" method="_on_gui_input"]
