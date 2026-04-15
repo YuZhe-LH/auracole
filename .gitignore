@@ -1,5 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
-
 /model/Flood/
+.dotnet_cli/
