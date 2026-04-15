@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bv8gwqecnrxb4"]
+
+[ext_resource type="PackedScene" uid="uid://buwxno38iegae" path="res://model/Flood/青丘3.glb" id="1_6vxvo"]
+
+[node name="Node3D" type="Node3D" unique_id=714202430]
+
+[node name="青丘3" parent="." unique_id=1108247381 instance=ExtResource("1_6vxvo")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)

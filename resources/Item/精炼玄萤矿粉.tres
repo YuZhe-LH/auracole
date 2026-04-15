@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://c47pd1p3cv3wc"]
+
+[ext_resource type="Script" uid="uid://d4bsmwwf1ltoa" path="res://scripts/Data/item_data.gd" id="1_a6joe"]
+
+[resource]
+script = ExtResource("1_a6joe")
+name = "精炼玄萤矿粉"
+metadata/_custom_type_script = "uid://d4bsmwwf1ltoa"

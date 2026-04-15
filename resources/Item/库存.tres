@@ -1,0 +1,98 @@
+[gd_resource type="Resource" script_class="InventoryDate" format=3 uid="uid://cc3i241ac1t5v"]
+
+[ext_resource type="Script" uid="uid://hfwx45twytgd" path="res://scripts/Data/inventory_date.gd" id="1_sdn4s"]
+[ext_resource type="Script" uid="uid://cqwvmsry3epw8" path="res://scripts/Data/slot_data.gd" id="2_4gvut"]
+[ext_resource type="Resource" uid="uid://xm5ecwitqnj2" path="res://resources/Item/高纯金属块.tres" id="3_j6rji"]
+[ext_resource type="Resource" uid="uid://dxax6slux8ykb" path="res://resources/Item/高纯玄萤燃料块.tres" id="4_l437v"]
+[ext_resource type="Resource" uid="uid://b3cg8suqkavf6" path="res://resources/Item/玄萤燃料块.tres" id="5_pht6d"]
+[ext_resource type="Resource" uid="uid://bd2at4fwgc7qn" path="res://resources/Item/玄萤矿.tres" id="6_62km5"]
+[ext_resource type="Resource" uid="uid://hptkj8lndhns" path="res://resources/Item/玄萤矿粉.tres" id="7_3u5tk"]
+[ext_resource type="Resource" uid="uid://c47pd1p3cv3wc" path="res://resources/Item/精炼玄萤矿粉.tres" id="8_tjuhm"]
+[ext_resource type="Resource" uid="uid://dr7wujscpfbvn" path="res://resources/Item/金属块.tres" id="9_qjmb4"]
+[ext_resource type="Resource" uid="uid://d40k2mrnnacd" path="res://resources/Item/金属粉末.tres" id="10_31jpm"]
+[ext_resource type="Script" uid="uid://d4bsmwwf1ltoa" path="res://scripts/Data/item_data.gd" id="11_pht6d"]
+
+[sub_resource type="Resource" id="Resource_hyj2v"]
+script = ExtResource("2_4gvut")
+item_data = ExtResource("3_j6rji")
+metadata/_custom_type_script = "uid://cqwvmsry3epw8"
+
+[sub_resource type="Resource" id="Resource_x4py5"]
+script = ExtResource("2_4gvut")
+item_data = ExtResource("4_l437v")
+metadata/_custom_type_script = "uid://cqwvmsry3epw8"
+
+[sub_resource type="Resource" id="Resource_rh8aw"]
+script = ExtResource("2_4gvut")
+item_data = ExtResource("5_pht6d")
+metadata/_custom_type_script = "uid://cqwvmsry3epw8"
+
+[sub_resource type="Resource" id="Resource_a44xb"]
+script = ExtResource("2_4gvut")
+item_data = ExtResource("6_62km5")
+metadata/_custom_type_script = "uid://cqwvmsry3epw8"
+
+[sub_resource type="Resource" id="Resource_fi03p"]
+script = ExtResource("2_4gvut")
+item_data = ExtResource("7_3u5tk")
+metadata/_custom_type_script = "uid://cqwvmsry3epw8"
+
+[sub_resource type="Resource" id="Resource_li408"]
+script = ExtResource("2_4gvut")
+item_data = ExtResource("8_tjuhm")
+metadata/_custom_type_script = "uid://cqwvmsry3epw8"
+
+[sub_resource type="Resource" id="Resource_e8p7v"]
+script = ExtResource("2_4gvut")
+item_data = ExtResource("9_qjmb4")
+metadata/_custom_type_script = "uid://cqwvmsry3epw8"
+
+[sub_resource type="Resource" id="Resource_08fnq"]
+script = ExtResource("2_4gvut")
+item_data = ExtResource("10_31jpm")
+metadata/_custom_type_script = "uid://cqwvmsry3epw8"
+
+[sub_resource type="Resource" id="Resource_pht6d"]
+script = ExtResource("11_pht6d")
+status = 1
+metadata/_custom_type_script = "uid://d4bsmwwf1ltoa"
+
+[sub_resource type="Resource" id="Resource_62km5"]
+script = ExtResource("2_4gvut")
+item_data = SubResource("Resource_pht6d")
+metadata/_custom_type_script = "uid://cqwvmsry3epw8"
+
+[sub_resource type="Resource" id="Resource_3u5tk"]
+script = ExtResource("11_pht6d")
+status = 1
+metadata/_custom_type_script = "uid://d4bsmwwf1ltoa"
+
+[sub_resource type="Resource" id="Resource_tjuhm"]
+script = ExtResource("2_4gvut")
+item_data = SubResource("Resource_3u5tk")
+metadata/_custom_type_script = "uid://cqwvmsry3epw8"
+
+[sub_resource type="Resource" id="Resource_qjmb4"]
+script = ExtResource("11_pht6d")
+status = 1
+metadata/_custom_type_script = "uid://d4bsmwwf1ltoa"
+
+[sub_resource type="Resource" id="Resource_31jpm"]
+script = ExtResource("2_4gvut")
+item_data = SubResource("Resource_qjmb4")
+metadata/_custom_type_script = "uid://cqwvmsry3epw8"
+
+[sub_resource type="Resource" id="Resource_5iyjp"]
+script = ExtResource("11_pht6d")
+status = 1
+metadata/_custom_type_script = "uid://d4bsmwwf1ltoa"
+
+[sub_resource type="Resource" id="Resource_h6ebh"]
+script = ExtResource("2_4gvut")
+item_data = SubResource("Resource_5iyjp")
+metadata/_custom_type_script = "uid://cqwvmsry3epw8"
+
+[resource]
+script = ExtResource("1_sdn4s")
+solt_date = Array[ExtResource("2_4gvut")]([SubResource("Resource_hyj2v"), SubResource("Resource_x4py5"), SubResource("Resource_rh8aw"), SubResource("Resource_a44xb"), SubResource("Resource_fi03p"), SubResource("Resource_li408"), SubResource("Resource_e8p7v"), SubResource("Resource_08fnq"), SubResource("Resource_62km5"), SubResource("Resource_tjuhm"), SubResource("Resource_31jpm"), SubResource("Resource_h6ebh")])
+metadata/_custom_type_script = "uid://hfwx45twytgd"
