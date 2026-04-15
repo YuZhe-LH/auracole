@@ -12,7 +12,7 @@ const MAP_TOGGLE_DEBOUNCE_MSEC := 200
 # ====================== 卡通渲染配置 ======================
 @export var apply_toon_to_entire_scene := true
 @export_range(0.0, 1.0, 0.01) var roughness_bias := 0.12
-@export_range(0.0, 1.0, 0.01) var rim_strength := 0.22
+@export_range(0.0, 1.0, 0.01) var rim_strength := 0.12
 @export_range(0.0, 1.0, 0.01) var rim_tint := 0.65
 @export var fallback_albedo := Color(0.82, 0.85, 0.92, 1.0)
 @export var outline_color := Color(0.05, 0.06, 0.09, 1.0)
@@ -22,10 +22,10 @@ const MAP_TOGGLE_DEBOUNCE_MSEC := 200
 @export_range(0.001, 0.2, 0.001) var shadow_softness := 0.035
 @export_range(-0.2, 0.2, 0.01) var shadow_wrap := 0.04
 @export var highlight_color := Color(1.0, 0.97, 0.98, 1.0)
-@export_range(0.0, 1.0, 0.01) var highlight_strength := 0.12
+@export_range(0.0, 1.0, 0.01) var highlight_strength := 0.05
 @export_range(0.0, 1.0, 0.01) var highlight_threshold := 0.9
 @export_range(0.001, 0.2, 0.001) var highlight_softness := 0.03
-@export_range(0.0, 1.0, 0.01) var ambient_boost := 0.05
+@export_range(0.0, 1.0, 0.01) var ambient_boost := 0.0
 
 # ====================== 节点引用 ======================
 # 玩家节点
@@ -208,22 +208,34 @@ func _setup_environment() -> void:
 		return
 
 	var environment := world_environment.environment
-	environment.ambient_light_color = Color(0.0, 0.5900909, 0.93618846, 1.0)
-	environment.ambient_light_energy = 0.0
+	environment.ambient_light_color = Color(0.62, 0.73, 0.9, 1.0)
+	environment.ambient_light_energy = 0.12
+	environment.ambient_light_sky_contribution = 0.15
+	environment.background_energy_multiplier = 0.35
+	environment.background_intensity = 0.7
+	environment.tonemap_exposure = 0.78
+	environment.tonemap_white = 1.0
 	environment.ssr_enabled = true
 	environment.ssao_enabled = false
 	environment.ssil_enabled = true
 	environment.sdfgi_enabled = false
-	environment.volumetric_fog_enabled = true
-	environment.glow_enabled = false
+	environment.volumetric_fog_enabled = false
+	environment.glow_enabled = true
+	environment.glow_intensity = 0.55
+	environment.glow_strength = 0.65
+	environment.glow_mix = 0.04
+	environment.glow_bloom = 0.0
+	environment.glow_hdr_threshold = 2.4
+	environment.glow_hdr_scale = 1.0
+	environment.glow_hdr_luminance_cap = 12.0
 
 
 func _setup_directional_light() -> void:
 	if directional_light == null:
 		return
 
-	directional_light.light_energy = 0.408
-	directional_light.light_indirect_energy = 0.259
+	directional_light.light_energy = 0.42
+	directional_light.light_indirect_energy = 0.12
 	directional_light.shadow_enabled = true
 	directional_light.rotation = Vector3(-1.3089969, 0.5183628, 0.0)
 

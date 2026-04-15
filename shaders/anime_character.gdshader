@@ -36,7 +36,8 @@ void fragment() {
 	ROUGHNESS = 1.0;
 	METALLIC = 0.0;
 	SPECULAR = 0.0;
-	EMISSION = base.rgb * ambient_boost;
+	// Keep character fill light subtle so global glow does not blow out skin and white cloth.
+	EMISSION = base.rgb * ambient_boost * 0.08;
 }
 
 
