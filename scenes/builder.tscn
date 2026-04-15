@@ -4,17 +4,29 @@
 
 [node name="Builder" type="Control" unique_id=1896418776]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1200.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_80mxy")
 
 [node name="Background" type="ColorRect" parent="." unique_id=700157510]
-layout_mode = 0
-color = Color(0.945, 0.949, 0.965, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03, 0.03, 0.03, 1)
 
 [node name="RootMargin" type="MarginContainer" parent="." unique_id=272632570]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 64
 theme_override_constants/margin_top = 56
 theme_override_constants/margin_right = 64
@@ -38,7 +50,6 @@ text = "选择建筑类别，提交全部材料后即可完成建造。"
 autowrap_mode = 3
 
 [node name="ContentRow" type="HBoxContainer" parent="RootMargin/MainVBox" unique_id=954563926]
-custom_minimum_size = Vector2(1480, 860)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

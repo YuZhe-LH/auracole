@@ -56,15 +56,19 @@ var _selected_material_index: int = -1
 
 @onready var header_title: Label = $RootMargin/MainVBox/HeaderTitle
 @onready var header_subtitle: Label = $RootMargin/MainVBox/HeaderSubtitle
+@onready var content_row: BoxContainer = $RootMargin/MainVBox/ContentRow
+@onready var material_panel: PanelContainer = $RootMargin/MainVBox/ContentRow/MaterialPanel
 @onready var building_selector_label: Label = $RootMargin/MainVBox/ContentRow/MaterialPanel/MaterialMargin/MaterialVBox/BuildingSelectorLabel
 @onready var building_selector: OptionButton = $RootMargin/MainVBox/ContentRow/MaterialPanel/MaterialMargin/MaterialVBox/BuildingSelector
 @onready var material_title: Label = $RootMargin/MainVBox/ContentRow/MaterialPanel/MaterialMargin/MaterialVBox/MaterialTitle
 @onready var material_list: ItemList = $RootMargin/MainVBox/ContentRow/MaterialPanel/MaterialMargin/MaterialVBox/MaterialList
+@onready var description_panel: PanelContainer = $RootMargin/MainVBox/ContentRow/DescriptionPanel
 @onready var description_title: Label = $RootMargin/MainVBox/ContentRow/DescriptionPanel/DescriptionMargin/DescriptionVBox/DescriptionTitle
 @onready var build_image: TextureRect = $RootMargin/MainVBox/ContentRow/DescriptionPanel/DescriptionMargin/DescriptionVBox/BuildImage
 @onready var building_name_label: Label = $RootMargin/MainVBox/ContentRow/DescriptionPanel/DescriptionMargin/DescriptionVBox/SelectedMaterialName
 @onready var building_category_label: Label = $RootMargin/MainVBox/ContentRow/DescriptionPanel/DescriptionMargin/DescriptionVBox/CategoryLabel
 @onready var description_text: RichTextLabel = $RootMargin/MainVBox/ContentRow/DescriptionPanel/DescriptionMargin/DescriptionVBox/DescriptionText
+@onready var submit_panel: PanelContainer = $RootMargin/MainVBox/ContentRow/SubmitPanel
 @onready var submit_title: Label = $RootMargin/MainVBox/ContentRow/SubmitPanel/SubmitMargin/SubmitVBox/SubmitTitle
 @onready var selected_material_label: Label = $RootMargin/MainVBox/ContentRow/SubmitPanel/SubmitMargin/SubmitVBox/SelectedMaterialLabel
 @onready var requirement_label: Label = $RootMargin/MainVBox/ContentRow/SubmitPanel/SubmitMargin/SubmitVBox/RequirementLabel
@@ -77,11 +81,13 @@ var _selected_material_index: int = -1
 
 func _ready() -> void:
 	_normalize_building_catalog()
+	get_viewport().size_changed.connect(_on_viewport_size_changed)
 	building_selector.item_selected.connect(_on_building_selected)
 	material_list.item_selected.connect(_on_material_selected)
 	submit_button.pressed.connect(_on_submit_pressed)
 	build_button.pressed.connect(_on_build_pressed)
 	submit_amount.value_changed.connect(_on_submit_amount_changed)
+	_update_responsive_layout()
 	_rebuild_building_selector()
 	_select_building(_selected_building_index)
 
@@ -196,6 +202,7 @@ func _refresh_building_info() -> void:
 		str(build_target["description"])
 	]
 	_refresh_build_image()
+	_update_responsive_layout()
 
 func _refresh_build_image() -> void:
 	var image_path: String = str(build_target.get("image_path", ""))
@@ -458,3 +465,33 @@ func _on_submit_amount_changed(_value: float) -> void:
 	if submit_button.disabled:
 		return
 	_update_default_status()
+
+func _on_viewport_size_changed() -> void:
+	_update_responsive_layout()
+
+func _update_responsive_layout() -> void:
+	if not is_node_ready():
+		return
+
+	var viewport_size: Vector2 = get_viewport_rect().size
+	var compact_layout: bool = viewport_size.x < 1500.0 or viewport_size.y < 900.0
+
+	content_row.vertical = compact_layout
+	content_row.add_theme_constant_override("separation", 16 if compact_layout else 20)
+
+	if compact_layout:
+		material_panel.custom_minimum_size = Vector2(0, 300)
+		description_panel.custom_minimum_size = Vector2(0, 520)
+		submit_panel.custom_minimum_size = Vector2(0, 340)
+		material_list.custom_minimum_size = Vector2(0, 260)
+		build_image.custom_minimum_size = Vector2(0, 220)
+		description_text.custom_minimum_size = Vector2(0, 260)
+		status_label.custom_minimum_size = Vector2(0, 120)
+	else:
+		material_panel.custom_minimum_size = Vector2(280, 0)
+		description_panel.custom_minimum_size = Vector2(420, 0)
+		submit_panel.custom_minimum_size = Vector2(320, 0)
+		material_list.custom_minimum_size = Vector2(240, 320)
+		build_image.custom_minimum_size = Vector2(360, 220)
+		description_text.custom_minimum_size = Vector2(360, 260)
+		status_label.custom_minimum_size = Vector2(0, 120)
