@@ -49,7 +49,7 @@ theme_override_font_sizes/font_size = 18
 text = "选择建筑类别，提交全部材料后即可完成建造。"
 autowrap_mode = 3
 
-[node name="ContentRow" type="HBoxContainer" parent="RootMargin/MainVBox" unique_id=954563926]
+[node name="ContentRow" type="BoxContainer" parent="RootMargin/MainVBox" unique_id=2114227501]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

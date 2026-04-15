@@ -3,6 +3,8 @@ extends Control
 signal material_submitted(building_id: String, material_id: String, amount: int, total_submitted: int)
 signal build_completed(building_id: String)
 
+const COMPACT_LAYOUT_WIDTH := 1220.0
+
 var building_catalog: Array[Dictionary] = [
 	{
 		"id": "mingju",
@@ -474,7 +476,7 @@ func _update_responsive_layout() -> void:
 		return
 
 	var viewport_size: Vector2 = get_viewport_rect().size
-	var compact_layout: bool = viewport_size.x < 1500.0 or viewport_size.y < 900.0
+	var compact_layout: bool = viewport_size.x < COMPACT_LAYOUT_WIDTH
 
 	content_row.vertical = compact_layout
 	content_row.add_theme_constant_override("separation", 16 if compact_layout else 20)
