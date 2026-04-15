@@ -1,17 +1,39 @@
 # 脚本挂载在 3D 主场景根节点，用于按 B 键 打开/关闭 地图/背包UI
 extends Node3D
 
+const CHARACTER_TOON_SHADER := preload("res://shaders/anime_character.gdshader")
+
 # ====================== 常量配置 ======================
 # 地图/背包场景文件路径（你自己的tscn文件）
 const MAP_SCENE_PATH := "res://scenes/map.tscn"
 # 按键防抖间隔（200毫秒内不能重复开关，防止连按乱套）
 const MAP_TOGGLE_DEBOUNCE_MSEC := 200
 
+# ====================== 卡通渲染配置 ======================
+@export var apply_toon_to_entire_scene := true
+@export_range(0.0, 1.0, 0.01) var roughness_bias := 0.12
+@export_range(0.0, 1.0, 0.01) var rim_strength := 0.22
+@export_range(0.0, 1.0, 0.01) var rim_tint := 0.65
+@export var fallback_albedo := Color(0.82, 0.85, 0.92, 1.0)
+@export var outline_color := Color(0.05, 0.06, 0.09, 1.0)
+@export_range(0.0001, 0.015, 0.0005) var outline_width := 0.0009
+@export var shadow_tint := Color(0.74, 0.8, 0.92, 1.0)
+@export_range(0.0, 1.0, 0.01) var shadow_threshold := 0.5
+@export_range(0.001, 0.2, 0.001) var shadow_softness := 0.035
+@export_range(-0.2, 0.2, 0.01) var shadow_wrap := 0.04
+@export var highlight_color := Color(1.0, 0.97, 0.98, 1.0)
+@export_range(0.0, 1.0, 0.01) var highlight_strength := 0.12
+@export_range(0.0, 1.0, 0.01) var highlight_threshold := 0.9
+@export_range(0.001, 0.2, 0.001) var highlight_softness := 0.03
+@export_range(0.0, 1.0, 0.01) var ambient_boost := 0.05
+
 # ====================== 节点引用 ======================
 # 玩家节点
 @onready var player: Node = $Player
 # UI父容器（CanvasGroup，用于放动态生成的地图/背包）
 @onready var map_parent: Node = $CanvasGroup
+@onready var world_environment: WorldEnvironment = $WorldEnvironment
+@onready var directional_light: DirectionalLight3D = $DirectionalLight3D
 
 # ====================== 状态变量 ======================
 # 保存当前生成的地图/背包实例
@@ -24,6 +46,11 @@ var player_process_mode_before_map: Node.ProcessMode = Node.PROCESS_MODE_INHERIT
 var mouse_mode_before_map: Input.MouseMode = Input.MOUSE_MODE_CAPTURED
 # 标记玩家是否被地图锁定
 var player_locked_by_map := false
+
+
+# ====================== 生命周期 ======================
+func _ready() -> void:
+	_apply_tps_demo_render_style()
 
 # ====================== 输入检测 ======================
 func _input(event: InputEvent) -> void:
@@ -45,7 +72,6 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and _try_close_map():
 		get_viewport().set_input_as_handled()
 
-# ====================== 生命周期 ======================
 # 节点销毁时自动关闭地图，防止内存泄漏
 func _exit_tree() -> void:
 	_close_map()
@@ -168,3 +194,131 @@ func _unlock_player_from_map() -> void:
 
 	Input.mouse_mode = mouse_mode_before_map
 	player_locked_by_map = false
+
+
+# ====================== 卡通渲染应用 ======================
+func _apply_tps_demo_render_style() -> void:
+	_setup_environment()
+	_setup_directional_light()
+	_apply_toon_materials(player if not apply_toon_to_entire_scene else self)
+
+
+func _setup_environment() -> void:
+	if world_environment == null or world_environment.environment == null:
+		return
+
+	var environment := world_environment.environment
+	environment.ambient_light_color = Color(0.0, 0.5900909, 0.93618846, 1.0)
+	environment.ambient_light_energy = 0.0
+	environment.ssr_enabled = true
+	environment.ssao_enabled = false
+	environment.ssil_enabled = true
+	environment.sdfgi_enabled = false
+	environment.volumetric_fog_enabled = true
+	environment.glow_enabled = false
+
+
+func _setup_directional_light() -> void:
+	if directional_light == null:
+		return
+
+	directional_light.light_energy = 0.408
+	directional_light.light_indirect_energy = 0.259
+	directional_light.shadow_enabled = true
+	directional_light.rotation = Vector3(-1.3089969, 0.5183628, 0.0)
+
+
+func _apply_toon_materials(root_node: Node) -> void:
+	if root_node is MeshInstance3D:
+		_toonize_mesh(root_node as MeshInstance3D)
+
+	for child in root_node.get_children():
+		_apply_toon_materials(child)
+
+
+func _toonize_mesh(mesh_instance: MeshInstance3D) -> void:
+	var mesh: Mesh = mesh_instance.mesh
+	if mesh == null:
+		return
+
+	for surface_index in range(mesh.get_surface_count()):
+		var source_material := mesh_instance.get_active_material(surface_index)
+		var toon_material: Material
+		if _is_character_mesh(mesh_instance):
+			toon_material = _build_character_material(source_material)
+		else:
+			toon_material = _build_toon_material(source_material)
+		if toon_material != null:
+			mesh_instance.set_surface_override_material(surface_index, toon_material)
+
+	if _is_character_mesh(mesh_instance):
+		mesh_instance.material_overlay = _build_outline_material()
+
+
+func _build_toon_material(source_material: Material) -> BaseMaterial3D:
+	var toon_material: BaseMaterial3D
+
+	if source_material is BaseMaterial3D:
+		toon_material = (source_material as BaseMaterial3D).duplicate(true) as BaseMaterial3D
+	else:
+		var fallback_material := StandardMaterial3D.new()
+		fallback_material.albedo_color = fallback_albedo
+		toon_material = fallback_material
+
+	toon_material.set_local_to_scene(true)
+	toon_material.diffuse_mode = BaseMaterial3D.DIFFUSE_TOON
+	toon_material.specular_mode = BaseMaterial3D.SPECULAR_TOON
+	toon_material.roughness = clamp(toon_material.roughness + roughness_bias, 0.0, 1.0)
+	toon_material.metallic = 0.0
+	toon_material.rim_enabled = true
+	toon_material.rim = max(toon_material.rim, rim_strength)
+	toon_material.rim_tint = max(toon_material.rim_tint, rim_tint)
+	return toon_material
+
+
+func _build_outline_material() -> BaseMaterial3D:
+	var outline_material := StandardMaterial3D.new()
+	outline_material.set_local_to_scene(true)
+	outline_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	outline_material.albedo_color = outline_color
+	outline_material.cull_mode = BaseMaterial3D.CULL_FRONT
+	outline_material.set_grow_enabled(true)
+	outline_material.set_grow(outline_width)
+	outline_material.set_flag(BaseMaterial3D.FLAG_DISABLE_FOG, true)
+	outline_material.no_depth_test = false
+	return outline_material
+
+
+func _is_character_mesh(mesh_instance: MeshInstance3D) -> bool:
+	return player != null and player.is_ancestor_of(mesh_instance)
+
+
+func _build_character_material(source_material: Material) -> ShaderMaterial:
+	var material := ShaderMaterial.new()
+	material.shader = CHARACTER_TOON_SHADER
+	material.set_local_to_scene(true)
+	material.set_shader_parameter("base_color", fallback_albedo)
+	material.set_shader_parameter("shadow_color", shadow_tint)
+	material.set_shader_parameter("shadow_threshold", shadow_threshold)
+	material.set_shader_parameter("shadow_softness", shadow_softness)
+	material.set_shader_parameter("shadow_wrap", shadow_wrap)
+	material.set_shader_parameter("highlight_color", highlight_color)
+	material.set_shader_parameter("highlight_strength", highlight_strength)
+	material.set_shader_parameter("highlight_threshold", highlight_threshold)
+	material.set_shader_parameter("highlight_softness", highlight_softness)
+	material.set_shader_parameter("rim_strength", rim_strength)
+	material.set_shader_parameter("rim_threshold", 0.72)
+	material.set_shader_parameter("rim_softness", 0.08)
+	material.set_shader_parameter("ambient_boost", ambient_boost)
+
+	if source_material is BaseMaterial3D:
+		var base_material := source_material as BaseMaterial3D
+		material.set_shader_parameter("base_color", base_material.albedo_color)
+		material.set_shader_parameter("use_texture", base_material.albedo_texture != null)
+		material.set_shader_parameter("albedo_texture", base_material.albedo_texture)
+		material.set_shader_parameter("alpha_cutoff", max(base_material.alpha_scissor_threshold, 0.1))
+	else:
+		material.set_shader_parameter("use_texture", false)
+		material.set_shader_parameter("alpha_cutoff", 0.1)
+
+	return material
