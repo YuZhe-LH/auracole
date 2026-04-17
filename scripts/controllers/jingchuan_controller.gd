@@ -4,18 +4,21 @@ extends Node3D
 # ====================== 常量配置 ======================
 # 地图/背包场景文件路径（你自己的tscn文件）
 const MAP_SCENE_PATH := "res://scenes/map.tscn"
+const MAP_SCENE := preload("res://scenes/map.tscn")
+const MAP_TOGGLE_ACTION := &"toggle_inventory"
+const MAP_UI_LAYER_NAME := &"MapUiLayer"
+const MAP_UI_ROOT_NAME := &"MapUiRoot"
 # 按键防抖间隔（200毫秒内不能重复开关，防止连按乱套）
 const MAP_TOGGLE_DEBOUNCE_MSEC := 200
 
 # ====================== 节点引用 ======================
 # 玩家节点
 @onready var player: Node = $Player
-# UI父容器（CanvasGroup，用于放动态生成的地图/背包）
-@onready var map_parent: Node = $CanvasGroup
 
 # ====================== 状态变量 ======================
 # 保存当前生成的地图/背包实例
 var map_instance: Control
+var map_parent: Control
 # 上一次开关的时间（用于防抖）
 var last_map_toggle_time_msec := -MAP_TOGGLE_DEBOUNCE_MSEC
 # 保存打开地图前玩家的运行模式（用于关闭后还原）
@@ -25,24 +28,27 @@ var mouse_mode_before_map: Input.MouseMode = Input.MOUSE_MODE_CAPTURED
 # 标记玩家是否被地图锁定
 var player_locked_by_map := false
 
+# ====================== 初始化 ======================
+func _ready() -> void:
+	_ensure_map_parent()
+
 # ====================== 输入检测 ======================
 func _input(event: InputEvent) -> void:
 	# 同步状态，防止异常
 	_sync_map_state()
 
-	# 只处理按键事件
 	var key_event := event as InputEventKey
-	if key_event == null or not key_event.pressed or key_event.echo:
+	if key_event != null and key_event.echo:
 		return
 
 	# 按 B 键：开关地图/背包
-	if key_event.physical_keycode == KEY_B:
+	if event.is_action_pressed(MAP_TOGGLE_ACTION, true):
 		if _toggle_map():
 			get_viewport().set_input_as_handled()
 		return
 
 	# 按 ESC：如果地图打开就关闭
-	if event.is_action_pressed("ui_cancel") and _try_close_map():
+	if event.is_action_pressed("ui_cancel", true) and _try_close_map():
 		get_viewport().set_input_as_handled()
 
 # ====================== 生命周期 ======================
@@ -73,29 +79,24 @@ func _try_close_map() -> bool:
 func _open_map() -> bool:
 	if _get_map_instance() != null:
 		return false
-	if not is_instance_valid(map_parent):
+	if _ensure_map_parent() == null:
 		push_error("Map parent node is missing.")
 		return false
 
-	# 加载地图场景
-	var map_scene := ResourceLoader.load(MAP_SCENE_PATH, "PackedScene", ResourceLoader.CACHE_MODE_IGNORE) as PackedScene
-	if map_scene == null:
-		push_error("Failed to load map scene: %s" % MAP_SCENE_PATH)
-		return false
-
 	# 创建实例
-	var new_map := map_scene.instantiate() as Control
+	var new_map := MAP_SCENE.instantiate() as Control
 	if new_map == null:
 		push_error("Failed to instantiate map scene: %s" % MAP_SCENE_PATH)
 		return false
 
-	var inventory_data := _get_player_inventory_data()
-	if new_map.has_method("setup_inventory_data"):
-		new_map.call("setup_inventory_data", inventory_data)
-
 	# 添加到UI容器
+	_configure_map_instance(new_map)
 	map_parent.add_child(new_map)
 	map_instance = new_map
+
+	var inventory_data := _get_player_inventory_data()
+	if new_map.has_method("setup_inventory_data"):
+		new_map.call_deferred("setup_inventory_data", inventory_data)
 
 	# 锁定玩家
 	_lock_player_for_map()
@@ -132,9 +133,45 @@ func _sync_map_state() -> void:
 
 
 func _get_player_inventory_data() -> InventoryDate:
-	if not is_instance_valid(player):
+	if is_instance_valid(player):
+		var direct_inventory := player.get("inventory_data") as InventoryDate
+		if direct_inventory != null:
+			return direct_inventory
+	var current_scene := get_tree().current_scene
+	if current_scene == null:
 		return null
-	return player.get("inventory_data") as InventoryDate
+	var player_node := current_scene.find_child("Player", true, false)
+	if player_node == null:
+		return null
+	return player_node.get("inventory_data") as InventoryDate
+
+
+func _ensure_map_parent() -> Control:
+	if is_instance_valid(map_parent) and map_parent.is_inside_tree():
+		return map_parent
+
+	var map_layer := get_node_or_null(String(MAP_UI_LAYER_NAME)) as CanvasLayer
+	if map_layer == null:
+		map_layer = CanvasLayer.new()
+		map_layer.name = String(MAP_UI_LAYER_NAME)
+		add_child(map_layer)
+
+	var ui_root := map_layer.get_node_or_null(String(MAP_UI_ROOT_NAME)) as Control
+	if ui_root == null:
+		ui_root = Control.new()
+		ui_root.name = String(MAP_UI_ROOT_NAME)
+		ui_root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		ui_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		map_layer.add_child(ui_root)
+
+	map_parent = ui_root
+	return map_parent
+
+
+func _configure_map_instance(new_map: Control) -> void:
+	new_map.name = "MapView"
+	new_map.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	new_map.mouse_filter = Control.MOUSE_FILTER_STOP
 
 # ====================== 玩家锁定/解锁 ======================
 # 打开地图时锁定玩家：停止移动、显示鼠标

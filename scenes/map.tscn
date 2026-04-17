@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cxqlefngsvenu"]
 
 [ext_resource type="Texture2D" uid="uid://lbb10137hfc7" path="res://resources/texture/mapboard.png" id="1_4xfga"]
-[ext_resource type="Script" uid="uid://d2tluaywj0m0g" path="res://scripts/controllers/map_controller.gd" id="1_wslke"]
+[ext_resource type="Script" path="res://scenes/map_responsive_controller.gd" id="1_wslke"]
 [ext_resource type="Script" uid="uid://da0c5rfih2k3q" path="res://scripts/scrollcontainer.gd" id="2_0cso3"]
 [ext_resource type="Texture2D" uid="uid://886jrxb1yc33" path="res://resources/texture/高纯金属块.png" id="3_2klcf"]
 [ext_resource type="Texture2D" uid="uid://tstudfvx6cop" path="res://resources/texture/圆角矩形.png" id="4_nakos"]

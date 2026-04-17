@@ -48,20 +48,30 @@ func _cache_slot_views() -> void:
 		if not child is Control:
 			continue
 		var slot_root := child as Control
+		var item_texture := slot_root.get_node_or_null("item_texture") as TextureRect
+		var name_label := slot_root.get_node_or_null("name") as Label
+		var quantity_label := _find_slot_label(slot_root, "stock_room", "number")
+		var curr_produce_label := slot_root.get_node_or_null("curr_produce") as Label
+		var curr_consume_label := slot_root.get_node_or_null("curr_consume") as Label
+		var theory_produce_label := slot_root.get_node_or_null("theory_produce") as Label
+		var theory_consume_label := slot_root.get_node_or_null("theory_consume") as Label
+		if item_texture == null or name_label == null or quantity_label == null:
+			push_warning("Map slot is missing required UI nodes: %s" % slot_root.name)
+			continue
 		_slot_views.append({
 			"root": slot_root,
-			"item_texture": slot_root.get_node("item_texture") as TextureRect,
-			"name": slot_root.get_node("name") as Label,
-			"quantity": _find_slot_label(slot_root, "stock_room", "number"),
-			"curr_produce": slot_root.get_node("curr_produce") as Label,
-			"curr_consume": slot_root.get_node("curr_consume") as Label,
-			"theory_produce": slot_root.get_node("theory_produce") as Label,
-			"theory_consume": slot_root.get_node("theory_consume") as Label,
+			"item_texture": item_texture,
+			"name": name_label,
+			"quantity": quantity_label,
+			"curr_produce": curr_produce_label,
+			"curr_consume": curr_consume_label,
+			"theory_produce": theory_produce_label,
+			"theory_consume": theory_consume_label,
 		})
 
 
 func _find_slot_label(slot_root: Control, prefix: String, contains: String = "") -> Label:
-	for child in slot_root.get_children():
+	for child in slot_root.find_children("*", "Label", true, false):
 		if not child is Label:
 			continue
 		var child_name := String(child.name)
@@ -81,6 +91,8 @@ func _connect_inventory_signals() -> void:
 		inventory_data.inventory_data_changed.connect(_on_inventory_changed)
 	if not inventory_data.slot_changed.is_connected(_on_slot_changed):
 		inventory_data.slot_changed.connect(_on_slot_changed)
+	if inventory_data.has_signal("slot_item_data_changed") and not inventory_data.slot_item_data_changed.is_connected(_on_slot_item_data_changed):
+		inventory_data.slot_item_data_changed.connect(_on_slot_item_data_changed)
 
 
 func _disconnect_inventory_signals() -> void:
@@ -90,6 +102,8 @@ func _disconnect_inventory_signals() -> void:
 		inventory_data.inventory_data_changed.disconnect(_on_inventory_changed)
 	if inventory_data.slot_changed.is_connected(_on_slot_changed):
 		inventory_data.slot_changed.disconnect(_on_slot_changed)
+	if inventory_data.has_signal("slot_item_data_changed") and inventory_data.slot_item_data_changed.is_connected(_on_slot_item_data_changed):
+		inventory_data.slot_item_data_changed.disconnect(_on_slot_item_data_changed)
 
 
 func _on_inventory_changed(_changed_inventory_data: InventoryDate) -> void:
@@ -97,6 +111,13 @@ func _on_inventory_changed(_changed_inventory_data: InventoryDate) -> void:
 
 
 func _on_slot_changed(slot_index: int, _slot_data: SlotData) -> void:
+	if slot_index < 0:
+		_refresh_all_slots()
+		return
+	_refresh_slot(slot_index)
+
+
+func _on_slot_item_data_changed(slot_index: int, _slot_data: SlotData, _item_data: ItemData, _property_name: StringName, _value: Variant) -> void:
 	if slot_index < 0:
 		_refresh_all_slots()
 		return
@@ -138,22 +159,22 @@ func _apply_slot_view(view: Dictionary, item_data: ItemData) -> void:
 		slot_root.tooltip_text = ""
 		item_texture.texture = null
 		name_label.text = "空"
-		quantity_label.text = "0"
-		curr_produce_label.text = _format_rate(0)
-		curr_consume_label.text = _format_rate(0)
-		theory_produce_label.text = _format_rate(0)
-		theory_consume_label.text = _format_rate(0)
+		_set_label_text(quantity_label, "0")
+		_set_label_text(curr_produce_label, _format_rate(0))
+		_set_label_text(curr_consume_label, _format_rate(0))
+		_set_label_text(theory_produce_label, _format_rate(0))
+		_set_label_text(theory_consume_label, _format_rate(0))
 		return
 
 	slot_root.modulate = _get_slot_modulate(item_data)
 	slot_root.tooltip_text = _build_slot_tooltip(item_data)
-	item_texture.texture = ITEM_TEXTURES.get(item_data.name, item_texture.texture)
+	item_texture.texture = ITEM_TEXTURES.get(item_data.name, null)
 	name_label.text = item_data.name
-	quantity_label.text = str(item_data.quantity)
-	curr_produce_label.text = _format_rate(item_data.curr_produce)
-	curr_consume_label.text = _format_rate(item_data.curr_consume)
-	theory_produce_label.text = _format_rate(item_data.theory_produce)
-	theory_consume_label.text = _format_rate(item_data.theory_consume)
+	_set_label_text(quantity_label, str(item_data.quantity))
+	_set_label_text(curr_produce_label, _format_rate(item_data.curr_produce))
+	_set_label_text(curr_consume_label, _format_rate(item_data.curr_consume))
+	_set_label_text(theory_produce_label, _format_rate(item_data.theory_produce))
+	_set_label_text(theory_consume_label, _format_rate(item_data.theory_consume))
 
 
 func _get_slot_modulate(item_data: ItemData) -> Color:
@@ -174,6 +195,11 @@ func _build_slot_tooltip(item_data: ItemData) -> String:
 
 func _format_rate(value: int) -> String:
 	return "%d%s" % [value, RATE_SUFFIX]
+
+
+func _set_label_text(target: Label, value: String) -> void:
+	if target != null:
+		target.text = value
 
 
 func _find_inventory_data_from_scene() -> InventoryDate:
