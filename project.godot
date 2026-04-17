@@ -21,8 +21,14 @@ Dialogic="*uid://ds2q0uclmolvu"
 
 [dialogic]
 
-directories/dch_directory={}
-directories/dtl_directory={}
+directories/dch_directory={
+"QingYun": "res://story/QingYun.dch",
+"boy": "res://resources/boy.dch",
+"commander": "res://resources/commander.dch"
+}
+directories/dtl_directory={
+"begin": "res://story/begin.dtl"
+}
 layout/style_directory={}
 
 [display]
