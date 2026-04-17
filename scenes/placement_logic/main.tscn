@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dy3rgwvg1ie14"]
+
+[ext_resource type="Script" uid="uid://cb6teiailm008" path="res://scripts/placement_logic/game_manager.gd" id="1_u0f1a"]
+[ext_resource type="Script" uid="uid://fqs12skd8pmx" path="res://scripts/placement_logic/map_manager.gd" id="2_njhnf"]
+[ext_resource type="Script" uid="uid://d3kexldrys24n" path="res://scripts/placement_logic/ui_bar.gd" id="3_7ukgd"]
+[ext_resource type="Script" uid="uid://doxi3006x3kao" path="res://scripts/placement_logic/camera_rig.gd" id="4_31ecb"]
+
+[node name="GameManager" type="Node2D" unique_id=880079559]
+script = ExtResource("1_u0f1a")
+
+[node name="MapManager" type="Node2D" parent="." unique_id=361240999]
+script = ExtResource("2_njhnf")
+
+[node name="CameraRig" type="Node2D" parent="." unique_id=1683628144]
+script = ExtResource("4_31ecb")
+
+[node name="Camera2D" type="Camera2D" parent="CameraRig" unique_id=197238445]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1359253309]
+layer = 10
+
+[node name="UI_Bar" type="Control" parent="CanvasLayer" unique_id=21982794]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("3_7ukgd")
+
+[node name="Panel" type="PanelContainer" parent="CanvasLayer/UI_Bar" unique_id=919263817]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Scroll" type="ScrollContainer" parent="CanvasLayer/UI_Bar/Panel" unique_id=79888534]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+vertical_scroll_mode = 0
+
+[node name="ItemList" type="HBoxContainer" parent="CanvasLayer/UI_Bar/Panel/Scroll" unique_id=521387848]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InteractionMenu" type="PopupMenu" parent="CanvasLayer" unique_id=1426295989]
